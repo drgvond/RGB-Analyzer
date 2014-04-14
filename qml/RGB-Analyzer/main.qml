@@ -21,6 +21,12 @@ ApplicationWindow {
         iconSource: "qrc:/document-open.png"
     }
 
+    Action {
+        id: analyzeAction
+        text: qsTr("Analyze")
+        iconSource: "qrc:/tubes.png"
+    }
+
     menuBar: MenuBar {
         Menu {
             title: qsTr("File")
@@ -37,8 +43,16 @@ ApplicationWindow {
     }
 
     toolBar: ToolBar {
-        ToolButton {
-            action: fileOpenAction
+        Row {
+            anchors.fill: parent
+
+            ToolButton {
+                action: fileOpenAction
+            }
+
+            ToolButton {
+                action: analyzeAction
+            }
         }
     }
 

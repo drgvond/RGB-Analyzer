@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file alias="document-open.png">qml/RGB-Analyzer/images/document-open.png</file>
         <file alias="document-open@2x.png">qml/RGB-Analyzer/images/document-open@2x.png</file>
+        <file alias="tubes.png">qml/RGB-Analyzer/images/2869_9731_chemistry_lab_tubes.png</file>
+        <file alias="tubes@2x.png">qml/RGB-Analyzer/images/2869_9731_chemistry_lab_tubes@2x.png</file>
     </qresource>
 </RCC>
