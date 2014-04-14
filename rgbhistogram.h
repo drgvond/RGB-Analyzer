@@ -2,18 +2,19 @@
 #define RGBHISTOGRAM_H
 
 #include <QObject>
+#include <QUrl>
 
 class RgbHistogram : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
+    Q_PROPERTY(QUrl imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
     Q_PROPERTY(int binSize READ binSize WRITE setBinSize NOTIFY binSizeChanged)
 
 public:
     explicit RgbHistogram(QObject *parent = 0);
 
-    QString imageSource() const
+    QUrl imageSource() const
     {
         return m_imageSource;
     }
@@ -23,13 +24,15 @@ public:
         return m_binSize;
     }
 
+    Q_INVOKABLE void compute();
+
 signals:
-    void imageSourceChanged(QString arg);
+    void imageSourceChanged(QUrl arg);
     void binSizeChanged(int arg);
 
 public slots:
 
-    void setImageSource(QString arg)
+    void setImageSource(QUrl arg)
     {
         if (m_imageSource != arg) {
             m_imageSource = arg;
@@ -46,7 +49,7 @@ public slots:
     }
 
 private:
-    QString m_imageSource;
+    QUrl m_imageSource;
     int m_binSize;
 };
 

@@ -26,6 +26,8 @@ ApplicationWindow {
         id: analyzeAction
         text: qsTr("Analyze")
         iconSource: "qrc:/tubes.png"
+        enabled: imageView.source != ""
+        onTriggered: hist.compute()
     }
 
     menuBar: MenuBar {
@@ -58,6 +60,7 @@ ApplicationWindow {
     }
 
     RgbHistogram {
+        id: hist
         imageSource: imageView.source
         binSize: 5
     }
