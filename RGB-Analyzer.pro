@@ -21,4 +21,5 @@ RESOURCES += \
     resources.qrc
 
 HEADERS += \
-    rgbhistogram.h
+    rgbhistogram.h \
+    rgbhistogrammodel.h
