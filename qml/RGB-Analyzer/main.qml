@@ -13,14 +13,20 @@ ApplicationWindow {
         onAccepted: imageView.source = fileUrl
     }
 
+    Action {
+        id: fileOpenAction
+        text: qsTr("Open")
+        shortcut: "Ctrl+O"
+        onTriggered: fileDialog.open()
+        iconSource: "qrc:/document-open.png"
+    }
+
     menuBar: MenuBar {
         Menu {
             title: qsTr("File")
 
             MenuItem {
-                text: qsTr("Open")
-                shortcut: "Ctrl+O"
-                onTriggered: fileDialog.open()
+                action: fileOpenAction
             }
 
             MenuItem {
@@ -30,10 +36,15 @@ ApplicationWindow {
         }
     }
 
+    toolBar: ToolBar {
+        ToolButton {
+            action: fileOpenAction
+        }
+    }
+
     Image {
         id: imageView
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
     }
-
 }
