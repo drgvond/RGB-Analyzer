@@ -1,11 +1,12 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.1
 import com.bigcorp.imageanalysis 1.0
 
 ApplicationWindow {
     title: qsTr("Hello World")
-    width: 640
+    width: 800
     height: 480
 
     FileDialog {
@@ -65,9 +66,39 @@ ApplicationWindow {
         binCount: 20
     }
 
-    Image {
-        id: imageView
+    SplitView {
         anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
+
+        Image {
+            id: imageView
+            Layout.minimumWidth: 200
+            fillMode: Image.PreserveAspectFit
+        }
+
+        TableView {
+            model: hist.histogramData
+            frameVisible: false
+
+            TableViewColumn {
+                title: "#"
+                role: "binNumber"
+                width: 45
+            }
+            TableViewColumn {
+                title: "Red"
+                role: "redCount"
+                width: 65
+            }
+            TableViewColumn {
+                title: "Green"
+                role: "greenCount"
+                width: 65
+            }
+            TableViewColumn {
+                title: "Blue"
+                role: "blueCount"
+                width: 65
+            }
+        }
     }
 }
