@@ -2,7 +2,7 @@
 #include <QImage>
 
 RgbHistogram::RgbHistogram(QObject *parent) :
-    QObject(parent), m_binSize(1)
+    QObject(parent), m_binCount(1)
 {
 }
 

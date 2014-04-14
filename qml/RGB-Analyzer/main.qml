@@ -62,7 +62,7 @@ ApplicationWindow {
     RgbHistogram {
         id: hist
         imageSource: imageView.source
-        binSize: 5
+        binCount: 20
     }
 
     Image {

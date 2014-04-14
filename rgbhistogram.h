@@ -9,7 +9,7 @@ class RgbHistogram : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QUrl imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
-    Q_PROPERTY(int binSize READ binSize WRITE setBinSize NOTIFY binSizeChanged)
+    Q_PROPERTY(int binCount READ binCount WRITE setBinCount NOTIFY binCountChanged)
 
 public:
     explicit RgbHistogram(QObject *parent = 0);
@@ -19,16 +19,16 @@ public:
         return m_imageSource;
     }
 
-    int binSize() const
+    int binCount() const
     {
-        return m_binSize;
+        return m_binCount;
     }
 
     Q_INVOKABLE void compute();
 
 signals:
     void imageSourceChanged(QUrl arg);
-    void binSizeChanged(int arg);
+    void binCountChanged(int arg);
 
 public slots:
 
@@ -40,17 +40,17 @@ public slots:
         }
     }
 
-    void setBinSize(int arg)
+    void setBinCount(int arg)
     {
-        if (m_binSize != arg) {
-            m_binSize = arg;
-            emit binSizeChanged(arg);
+        if (m_binCount != arg) {
+            m_binCount = arg;
+            emit binCountChanged(arg);
         }
     }
 
 private:
     QUrl m_imageSource;
-    int m_binSize;
+    int m_binCount;
 };
 
 #endif // RGBHISTOGRAM_H
