@@ -59,6 +59,7 @@ ApplicationWindow {
 
     RgbHistogram {
         imageSource: imageView.source
+        binSize: 5
     }
 
     Image {
