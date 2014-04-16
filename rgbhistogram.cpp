@@ -12,10 +12,16 @@ void RgbHistogram::compute()
 {
     QImage img(m_imageSource.toLocalFile());
     Q_ASSERT(!img.isNull());
+
+    m_bins.resize(m_binCount);
+    m_bins.fill(RgbHistogram::RgbBin());
+
     for (int i = 0; i < img.height(); ++i) {
         const QRgb *pixels = reinterpret_cast<const QRgb *>(img.constScanLine(i));
         for (int j = 0; j < img.width(); ++j) {
-
+            m_bins[binForValue(qRed(*pixels))].red++;
+            m_bins[binForValue(qGreen(*pixels))].green++;
+            m_bins[binForValue(qBlue(*pixels))].blue++;
             ++pixels;
         }
     }
@@ -26,15 +32,15 @@ void RgbHistogram::compute()
 
 int RgbHistogram::redCount(int bin)
 {
-    return bin * 3;
+    return m_bins[bin].red;
 }
 
 int RgbHistogram::greenCount(int bin)
 {
-    return bin * 4;
+    return m_bins[bin].green;
 }
 
 int RgbHistogram::blueCount(int bin)
 {
-    return bin * 5;
+    return m_bins[bin].blue;
 }

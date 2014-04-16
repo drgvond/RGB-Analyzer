@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QUrl>
+#include <QVector>
 
 class RgbHistogramModel;
 
@@ -58,14 +59,28 @@ public slots:
     {
         if (m_binCount != arg) {
             m_binCount = arg;
+            m_bins.resize(m_binCount);
+            m_bins.fill(RgbHistogram::RgbBin());
             emit binCountChanged(arg);
         }
     }
 
 private:
+    inline int binForValue(int v)
+    {
+        return v * m_binCount / 256;
+    }
+
+    struct RgbBin {
+        int red;
+        int green;
+        int blue;
+    };
+
     QUrl m_imageSource;
     int m_binCount;
     RgbHistogramModel *m_histogramData;
+    QVector<RgbBin> m_bins;
 };
 
 #endif // RGBHISTOGRAM_H
