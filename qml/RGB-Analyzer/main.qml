@@ -75,30 +75,35 @@ ApplicationWindow {
             fillMode: Image.PreserveAspectFit
         }
 
-        TableView {
-            model: hist.histogramData
-            frameVisible: false
+            TabView {
+                Tab {
+                    title: "Table"
+                    TableView {
+                        model: hist.histogramData
+                        frameVisible: false
 
-            TableViewColumn {
-                title: "#"
-                role: "binNumber"
-                width: 45
+                        TableViewColumn {
+                            title: "#"
+                            role: "binNumber"
+                            width: 45
+                        }
+                        TableViewColumn {
+                            title: "Red"
+                            role: "redCount"
+                            width: 65
+                        }
+                        TableViewColumn {
+                            title: "Green"
+                            role: "greenCount"
+                            width: 65
+                        }
+                        TableViewColumn {
+                            title: "Blue"
+                            role: "blueCount"
+                            width: 65
+                        }
+                    }
+                }
             }
-            TableViewColumn {
-                title: "Red"
-                role: "redCount"
-                width: 65
-            }
-            TableViewColumn {
-                title: "Green"
-                role: "greenCount"
-                width: 65
-            }
-            TableViewColumn {
-                title: "Blue"
-                role: "blueCount"
-                width: 65
-            }
-        }
     }
 }
