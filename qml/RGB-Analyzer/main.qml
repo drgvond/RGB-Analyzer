@@ -109,6 +109,13 @@ ApplicationWindow {
                         }
                     }
                 }
+
+                Tab {
+                    title: "Histogram"
+                    RgbHistogramView {
+                        histogram: hist
+                    }
+                }
             }
         }
     }
