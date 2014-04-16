@@ -3,7 +3,7 @@
 #include <QImage>
 
 RgbHistogram::RgbHistogram(QObject *parent) :
-    QObject(parent), m_binCount(1)
+    QObject(parent), m_binCount(1), m_maxValue(1)
 {
     m_histogramData = new RgbHistogramModel(this);
 }
@@ -25,6 +25,17 @@ void RgbHistogram::compute()
             ++pixels;
         }
     }
+
+    m_maxValue = 0;
+    foreach (const RgbBin &bin, m_bins) {
+        if (bin.red > m_maxValue)
+            m_maxValue = bin.red;
+        if (bin.green > m_maxValue)
+            m_maxValue = bin.green;
+        if (bin.blue > m_maxValue)
+            m_maxValue = bin.blue;
+    }
+    emit maxValueChanged(m_maxValue);
 
     emit m_histogramData->dataChanged(m_histogramData->index(0, 0),
                                       m_histogramData->index(binCount() - 1, 0));

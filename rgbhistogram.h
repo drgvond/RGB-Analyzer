@@ -14,6 +14,7 @@ class RgbHistogram : public QObject
     Q_PROPERTY(QUrl imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
     Q_PROPERTY(int binCount READ binCount WRITE setBinCount NOTIFY binCountChanged)
     Q_PROPERTY(RgbHistogramModel *histogramData READ histogramData NOTIFY histogramDataChanged)
+    Q_PROPERTY(int maxValue READ maxValue NOTIFY maxValueChanged)
 
 public:
     explicit RgbHistogram(QObject *parent = 0);
@@ -39,11 +40,18 @@ public:
     int greenCount(int bin);
     int blueCount(int bin);
 
+    int maxValue() const
+    {
+        return m_maxValue;
+    }
+
 signals:
     void imageSourceChanged(QUrl arg);
     void binCountChanged(int arg);
 
     void histogramDataChanged(RgbHistogramModel * arg);
+
+    void maxValueChanged(int arg);
 
 public slots:
 
@@ -81,6 +89,7 @@ private:
     int m_binCount;
     RgbHistogramModel *m_histogramData;
     QVector<RgbBin> m_bins;
+    int m_maxValue;
 };
 
 #endif // RGBHISTOGRAM_H
