@@ -23,14 +23,6 @@ ApplicationWindow {
         iconSource: "qrc:/document-open.png"
     }
 
-    Action {
-        id: analyzeAction
-        text: qsTr("Analyze")
-        iconSource: "qrc:/tubes.png"
-        enabled: imageView.source != ""
-        onTriggered: hist.compute()
-    }
-
     menuBar: MenuBar {
         Menu {
             title: qsTr("File")
@@ -53,11 +45,14 @@ ApplicationWindow {
                 Layout.maximumWidth: width
             }
 
-            SpinBox {
+            Slider {
                 id: binCount
-                minimumValue: 1
-                maximumValue: 256
-                value: 20
+                minimumValue: 0
+                maximumValue: 8
+                tickmarksEnabled: true
+                updateValueWhileDragging: false
+                stepSize: 1
+                value: 6
             }
         }
     }
@@ -65,7 +60,7 @@ ApplicationWindow {
     RgbHistogram {
         id: hist
         imageSource: imageView.source
-        binCount: binCount.value
+        binCount: Math.pow(2, binCount.value)
         onBinCountChanged: compute()
         onImageSourceChanged: compute()
     }
