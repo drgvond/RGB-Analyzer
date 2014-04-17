@@ -75,12 +75,17 @@ ApplicationWindow {
             fillMode: Image.PreserveAspectFit
         }
 
+        Item {
             TabView {
+                anchors.fill: parent
+                anchors.margins: 12
+
                 Tab {
                     title: "Table"
                     TableView {
+                        anchors.fill: parent
+                        anchors.margins: 12
                         model: hist.histogramData
-                        frameVisible: false
 
                         TableViewColumn {
                             title: "#"
@@ -105,5 +110,6 @@ ApplicationWindow {
                     }
                 }
             }
+        }
     }
 }
