@@ -11,10 +11,11 @@ RgbHistogram::RgbHistogram(QObject *parent) :
 void RgbHistogram::compute()
 {
     QImage img(m_imageSource.toLocalFile());
-    Q_ASSERT(!img.isNull());
+    if (img.isNull())
+        return;
 
+    m_bins.clear();
     m_bins.resize(m_binCount);
-    m_bins.fill(RgbHistogram::RgbBin());
 
     for (int i = 0; i < img.height(); ++i) {
         const QRgb *pixels = reinterpret_cast<const QRgb *>(img.constScanLine(i));
@@ -37,8 +38,7 @@ void RgbHistogram::compute()
     }
     emit maxValueChanged(m_maxValue);
 
-    emit m_histogramData->dataChanged(m_histogramData->index(0, 0),
-                                      m_histogramData->index(binCount() - 1, 0));
+    m_histogramData->histogramUpdated();
 }
 
 int RgbHistogram::redCount(int bin)

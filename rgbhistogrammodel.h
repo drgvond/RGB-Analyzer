@@ -48,6 +48,13 @@ public:
         return 0;
     }
 
+    void histogramUpdated() {
+        beginResetModel();
+        endResetModel();
+
+        emit dataChanged(index(0, 0), index(m_histogram->binCount() - 1, 0));
+    }
+
 private:
     RgbHistogram *m_histogram;
 };
