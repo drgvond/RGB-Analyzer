@@ -47,15 +47,17 @@ ApplicationWindow {
     }
 
     toolBar: ToolBar {
-        Row {
-            anchors.fill: parent
-
+        RowLayout {
             ToolButton {
                 action: fileOpenAction
+                Layout.maximumWidth: width
             }
 
-            ToolButton {
-                action: analyzeAction
+            SpinBox {
+                id: binCount
+                minimumValue: 1
+                maximumValue: 256
+                value: 20
             }
         }
     }
@@ -63,7 +65,9 @@ ApplicationWindow {
     RgbHistogram {
         id: hist
         imageSource: imageView.source
-        binCount: 20
+        binCount: binCount.value
+        onBinCountChanged: compute()
+        onImageSourceChanged: compute()
     }
 
     SplitView {
