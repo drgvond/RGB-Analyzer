@@ -45,6 +45,8 @@ public:
         return m_maxValue;
     }
 
+    Q_INVOKABLE void copyBinsToClipboard(const QVariantList &indices) const;
+
 signals:
     void imageSourceChanged(QUrl arg);
     void binCountChanged(int arg);

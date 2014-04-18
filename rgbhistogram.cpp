@@ -1,6 +1,8 @@
 #include "rgbhistogram.h"
 #include "rgbhistogrammodel.h"
 #include <QImage>
+#include <QClipboard>
+#include <QGuiApplication>
 
 RgbHistogram::RgbHistogram(QObject *parent) :
     QObject(parent), m_binCount(1), m_maxValue(1)
@@ -54,4 +56,15 @@ int RgbHistogram::greenCount(int bin) const
 int RgbHistogram::blueCount(int bin) const
 {
     return m_bins[bin].blue;
+}
+
+void RgbHistogram::copyBinsToClipboard(const QVariantList &indices) const
+{
+    QStringList csvData;
+    foreach (const QVariant &v, indices) {
+        int bin = v.toInt();
+        csvData << QString().sprintf("%d, %d, %d, %d", bin, redCount(bin), greenCount(bin), blueCount(bin));
+    }
+    QClipboard *cb = QGuiApplication::clipboard();
+    cb->setText(csvData.join(QLatin1Char('\n')));
 }
