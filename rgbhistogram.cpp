@@ -41,17 +41,17 @@ void RgbHistogram::compute()
     m_histogramData->histogramUpdated();
 }
 
-int RgbHistogram::redCount(int bin)
+int RgbHistogram::redCount(int bin) const
 {
     return m_bins[bin].red;
 }
 
-int RgbHistogram::greenCount(int bin)
+int RgbHistogram::greenCount(int bin) const
 {
     return m_bins[bin].green;
 }
 
-int RgbHistogram::blueCount(int bin)
+int RgbHistogram::blueCount(int bin) const
 {
     return m_bins[bin].blue;
 }
