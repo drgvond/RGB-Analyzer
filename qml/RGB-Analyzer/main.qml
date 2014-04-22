@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.1
 import com.bigcorp.imageanalysis 1.0
 
 ApplicationWindow {
-    title: qsTr("Hello World")
+    title: qsTr("Histogram")
     width: 800
     height: 480
 
