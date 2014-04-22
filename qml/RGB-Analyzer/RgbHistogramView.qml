@@ -7,7 +7,8 @@ Rectangle {
 
     width: 100
     height: 62
-    color: "black"
+    color: "white"
+    border.color: "lightgrey"
 
     Row {
         Repeater {
@@ -15,24 +16,24 @@ Rectangle {
              Item {
                  width: histView.width / histogram.binCount
                  height: histView.height
-                 opacity: 0.6
+                 opacity: 0.5
                  Rectangle {
                      width: parent.width
                      height: redCount / histogram.maxValue * histView.height
                      y: parent.height - height
-                     color: Qt.lighter("red")
+                     color: "red"
                  }
                  Rectangle {
                      width: histView.width / histogram.binCount
                      height: greenCount / histogram.maxValue * histView.height
                      y: parent.height - height
-                     color: Qt.lighter("green")
+                     color: "green"
                  }
                  Rectangle {
                      width: histView.width / histogram.binCount
                      height: blueCount / histogram.maxValue * histView.height
                      y: parent.height - height
-                     color: Qt.lighter("blue")
+                     color: "blue"
                  }
              }
         }

@@ -142,6 +142,8 @@ ApplicationWindow {
 
                 Tab {
                     title: "Histogram"
+                    anchors.fill: parent
+                    anchors.margins: 12
                     RgbHistogramView {
                         histogram: hist
                     }
