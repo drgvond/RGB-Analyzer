@@ -40,23 +40,32 @@ ApplicationWindow {
         Menu {
             title: qsTr("Edit")
             MenuItem {
-                text: "Cut"
+                text: qsTr("Cut")
                 shortcut: "Ctrl+X"
                 enabled: false
             }
             MenuItem {
-                text: "Copy"
+                text: qsTr("Copy")
                 shortcut: "Ctrl+C"
                 onTriggered: {
                     var tableView = tableTab.item
                     if (tableView)
-                        tableView.copySelectionToClipboard()
+                        tableView.copy()
                 }
             }
             MenuItem {
-                text: "Paste"
+                text: qsTr("Paste")
                 shortcut: "Ctrl+V"
                 enabled: false
+            }
+            MenuItem {
+                text: qsTr("Select All")
+                shortcut: "Ctrl+A"
+                onTriggered: {
+                    var tableView = tableTab.item
+                    if (tableView)
+                        tableView.selection.selectAll()
+                }
             }
         }
     }
@@ -111,7 +120,9 @@ ApplicationWindow {
                         model: hist.model
                         selectionMode: SelectionMode.ContiguousSelection
 
-                        function copySelectionToClipboard() {
+                        function copy() {
+                            if (selection.count === 0)
+                                return;
                             var indices = []
                             selection.forEach(function (i) { indices.push(i) })
                             hist.copyBinsToClipboard(indices)
