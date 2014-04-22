@@ -108,7 +108,7 @@ ApplicationWindow {
                     TableView {
                         anchors.fill: parent
                         anchors.margins: 12
-                        model: hist.histogramData
+                        model: hist.model
                         selectionMode: SelectionMode.ContiguousSelection
 
                         function copySelectionToClipboard() {

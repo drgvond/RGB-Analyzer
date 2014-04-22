@@ -12,7 +12,7 @@ Rectangle {
 
     Row {
         Repeater {
-            model: histogram.histogramData
+            model: histogram.model
              Item {
                  width: histView.width / histogram.binCount
                  height: histView.height

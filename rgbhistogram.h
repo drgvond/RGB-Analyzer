@@ -13,7 +13,7 @@ class RgbHistogram : public QObject
 
     Q_PROPERTY(QUrl imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
     Q_PROPERTY(int binCount READ binCount WRITE setBinCount NOTIFY binCountChanged)
-    Q_PROPERTY(RgbHistogramModel *histogramData READ histogramData NOTIFY histogramDataChanged)
+    Q_PROPERTY(RgbHistogramModel *model READ model NOTIFY modelChanged)
     Q_PROPERTY(int maxValue READ maxValue NOTIFY maxValueChanged)
 
 public:
@@ -29,7 +29,7 @@ public:
         return m_binCount;
     }
 
-    RgbHistogramModel *histogramData() const
+    RgbHistogramModel *model() const
     {
         return m_histogramData;
     }
@@ -51,7 +51,7 @@ signals:
     void imageSourceChanged(QUrl arg);
     void binCountChanged(int arg);
 
-    void histogramDataChanged(RgbHistogramModel * arg);
+    void modelChanged(RgbHistogramModel * arg);
 
     void maxValueChanged(int arg);
 
