@@ -3,7 +3,8 @@ import com.bigcorp.imageanalysis 1.0
 
 Rectangle {
     id: histView
-    property RgbHistogram histogram
+    property RgbHistogramModel histogramModel
+    readonly property RgbHistogram histogram: histogramModel.histogram
 
     width: 100
     height: 62
@@ -12,7 +13,7 @@ Rectangle {
 
     Row {
         Repeater {
-            model: histogram.model
+            model: histogramModel
              Item {
                  width: histView.width / histogram.binCount
                  height: histView.height

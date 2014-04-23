@@ -97,6 +97,11 @@ ApplicationWindow {
         onImageSourceChanged: compute()
     }
 
+    RgbHistogramModel {
+        id: histModel
+        histogram: hist
+    }
+
     SplitView {
         anchors.fill: parent
 
@@ -117,7 +122,7 @@ ApplicationWindow {
                     TableView {
                         anchors.fill: parent
                         anchors.margins: 12
-                        model: hist.model
+                        model: histModel
                         selectionMode: SelectionMode.ContiguousSelection
 
                         function copy() {
@@ -156,7 +161,7 @@ ApplicationWindow {
                     anchors.fill: parent
                     anchors.margins: 12
                     RgbHistogramView {
-                        histogram: hist
+                        histogramModel: histModel
                     }
                 }
             }

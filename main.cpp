@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
     QtQuick2ControlsApplicationViewer viewer;
     qmlRegisterType<RgbHistogram>("com.bigcorp.imageanalysis", 1, 0, "RgbHistogram");
-    qmlRegisterUncreatableType<RgbHistogramModel>("com.bigcorp.imageanalysis", 1, 0, "RgbHistogramModel", "RgbHistogramModel is for internal purposes only.");
+    qmlRegisterType<RgbHistogramModel>("com.bigcorp.imageanalysis", 1, 0, "RgbHistogramModel");
     viewer.setMainQmlFile(QStringLiteral("qml/RGB-Analyzer/main.qml"));
     viewer.show();
 

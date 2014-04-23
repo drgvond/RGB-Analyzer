@@ -6,9 +6,7 @@
 
 RgbHistogram::RgbHistogram(QObject *parent) :
     QObject(parent), m_binCount(1), m_maxValue(1)
-{
-    m_histogramData = new RgbHistogramModel(this);
-}
+{ }
 
 void RgbHistogram::compute()
 {
@@ -40,7 +38,7 @@ void RgbHistogram::compute()
     }
     emit maxValueChanged(m_maxValue);
 
-    m_histogramData->histogramUpdated();
+    emit histogramUpdated();
 }
 
 int RgbHistogram::redCount(int bin) const

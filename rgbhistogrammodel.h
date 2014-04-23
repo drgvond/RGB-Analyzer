@@ -8,6 +8,8 @@ class RgbHistogramModel : public QAbstractListModel
 {
     Q_OBJECT
 
+    Q_PROPERTY(RgbHistogram *histogram READ histogram WRITE setHistogram NOTIFY histogramChanged)
+
 public:
     enum HistogramRoles {
         BinNumberRole = Qt::UserRole + 1,
@@ -16,8 +18,8 @@ public:
         BlueCountRole
     };
 
-    RgbHistogramModel(RgbHistogram *histogram):
-        QAbstractListModel(histogram), m_histogram(histogram)
+    RgbHistogramModel(QObject *parent = 0):
+        QAbstractListModel(parent), m_histogram(0)
     { }
 
     QHash<int, QByteArray> roleNames() const {
@@ -34,6 +36,8 @@ public:
     }
 
     QVariant data(const QModelIndex &index, int role) const {
+        if (!m_histogram)
+            return QVariant(0);
         int bin = index.row();
         switch (role) {
         case BinNumberRole:
@@ -48,12 +52,31 @@ public:
         return 0;
     }
 
+    RgbHistogram *histogram() const
+    {
+        return m_histogram;
+    }
+
+public slots:
     void histogramUpdated() {
         beginResetModel();
         endResetModel();
 
         emit dataChanged(index(0, 0), index(m_histogram->binCount() - 1, 0));
     }
+
+    void setHistogram(RgbHistogram *arg)
+    {
+        if (m_histogram != arg) {
+            m_histogram = arg;
+            connect(m_histogram, SIGNAL(histogramUpdated()), this, SLOT(histogramUpdated()));
+            histogramUpdated();
+            emit histogramChanged(arg);
+        }
+    }
+
+signals:
+    void histogramChanged(RgbHistogram *arg);
 
 private:
     RgbHistogram *m_histogram;
