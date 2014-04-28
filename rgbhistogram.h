@@ -30,9 +30,9 @@ public:
 
     Q_INVOKABLE void compute();
 
-    int redCount(int bin) const;
-    int greenCount(int bin) const;
-    int blueCount(int bin) const;
+    Q_INVOKABLE int redCount(int bin) const;
+    Q_INVOKABLE int greenCount(int bin) const;
+    Q_INVOKABLE int blueCount(int bin) const;
 
     int maxValue() const
     {
