@@ -43,16 +43,6 @@ ApplicationWindow {
                 action: fileOpenAction
                 Layout.maximumWidth: width
             }
-
-            Slider {
-                id: binCount
-                minimumValue: 0
-                maximumValue: 8
-                tickmarksEnabled: true
-                updateValueWhileDragging: false
-                stepSize: 1
-                value: 6
-            }
         }
     }
 
