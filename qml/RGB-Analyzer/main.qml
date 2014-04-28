@@ -2,7 +2,6 @@ import QtQuick 2.4
 import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
-import com.bigcorp.imageanalysis 1.0
 
 ApplicationWindow {
     title: qsTr("Histogram")
@@ -55,15 +54,6 @@ ApplicationWindow {
                 value: 6
             }
         }
-    }
-
-    RgbHistogram {
-        id: hist
-        imageSource: imageView.source
-        binCount: Math.pow(2, binCount.value)
-        onBinCountChanged: compute()
-        onImageSourceChanged: compute()
-        onHistogramUpdated: console.log("histogram computed", hist.binCount)
     }
 
     SplitView {
