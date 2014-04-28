@@ -3,8 +3,8 @@ import com.bigcorp.imageanalysis 1.0
 
 Rectangle {
     id: histView
-    property RgbHistogramModel histogramModel
-    readonly property RgbHistogram histogram: histogramModel.histogram
+    property var histogramModel
+    property RgbHistogram histogram
 
     width: 100
     height: 62
