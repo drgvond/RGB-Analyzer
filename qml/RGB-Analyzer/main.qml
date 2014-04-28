@@ -63,23 +63,7 @@ ApplicationWindow {
         binCount: Math.pow(2, binCount.value)
         onBinCountChanged: compute()
         onImageSourceChanged: compute()
-        onHistogramUpdated: {
-            histModel.clear()
-            for (var i = 0; i < hist.binCount; i++) {
-                var o = {
-                    "binNumber": i,
-                    "redCount": hist.redCount(i),
-                    "greenCount": hist.greenCount(i),
-                    "blueCount": hist.blueCount(i)
-                }
-
-                histModel.append(o)
-            }
-        }
-    }
-
-    ListModel {
-        id: histModel
+        onHistogramUpdated: console.log("histogram computed", hist.binCount)
     }
 
     SplitView {
@@ -99,32 +83,6 @@ ApplicationWindow {
                 Tab {
                     id: tableTab
                     title: "Table"
-                    TableView {
-                        anchors.fill: parent
-                        anchors.margins: 12
-                        model: histModel
-
-                        TableViewColumn {
-                            title: "#"
-                            role: "binNumber"
-                            width: 45
-                        }
-                        TableViewColumn {
-                            title: "Red"
-                            role: "redCount"
-                            width: 65
-                        }
-                        TableViewColumn {
-                            title: "Green"
-                            role: "greenCount"
-                            width: 65
-                        }
-                        TableViewColumn {
-                            title: "Blue"
-                            role: "blueCount"
-                            width: 65
-                        }
-                    }
                 }
 
                 Tab {
@@ -132,7 +90,6 @@ ApplicationWindow {
                     anchors.fill: parent
                     anchors.margins: 12
                     RgbHistogramView {
-                        histogramModel: histModel
                         histogram: hist
                     }
                 }

@@ -3,7 +3,6 @@ import com.bigcorp.imageanalysis 1.0
 
 Rectangle {
     id: histView
-    property var histogramModel
     property RgbHistogram histogram
 
     width: 100
@@ -13,26 +12,26 @@ Rectangle {
 
     Row {
         Repeater {
-            model: histogramModel
+            model: histogram.binCount
              Item {
                  width: histView.width / histogram.binCount
                  height: histView.height
                  opacity: 0.5
                  Rectangle {
                      width: parent.width
-                     height: redCount / histogram.maxValue * histView.height
+                     height: histogram.redCount(index) / histogram.maxValue * histView.height
                      y: parent.height - height
                      color: "red"
                  }
                  Rectangle {
                      width: histView.width / histogram.binCount
-                     height: greenCount / histogram.maxValue * histView.height
+                     height: histogram.greenCount(index) / histogram.maxValue * histView.height
                      y: parent.height - height
                      color: "green"
                  }
                  Rectangle {
                      width: histView.width / histogram.binCount
-                     height: blueCount / histogram.maxValue * histView.height
+                     height: histogram.blueCount(index) / histogram.maxValue * histView.height
                      y: parent.height - height
                      color: "blue"
                  }
