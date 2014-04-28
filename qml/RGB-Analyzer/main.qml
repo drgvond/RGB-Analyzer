@@ -63,11 +63,23 @@ ApplicationWindow {
         binCount: Math.pow(2, binCount.value)
         onBinCountChanged: compute()
         onImageSourceChanged: compute()
+        onHistogramUpdated: {
+            histModel.clear()
+            for (var i = 0; i < hist.binCount; i++) {
+                var o = {
+                    "binNumber": i,
+                    "redCount": hist.redCount(i),
+                    "greenCount": hist.greenCount(i),
+                    "blueCount": hist.blueCount(i)
+                }
+
+                histModel.append(o)
+            }
+        }
     }
 
-    RgbHistogramModel {
+    ListModel {
         id: histModel
-        histogram: hist
     }
 
     SplitView {
@@ -121,6 +133,7 @@ ApplicationWindow {
                     anchors.margins: 12
                     RgbHistogramView {
                         histogramModel: histModel
+                        histogram: hist
                     }
                 }
             }
