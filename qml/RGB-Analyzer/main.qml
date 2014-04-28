@@ -120,9 +120,15 @@ ApplicationWindow {
                     id: tableTab
                     title: "Table"
                     TableView {
+                        id: tableView
                         anchors.fill: parent
                         anchors.margins: 12
-                        model: histModel
+                        sortIndicatorVisible: true
+                        model: SortFilterProxyModel {
+                            source: histModel
+                            sortRole: tableView.getColumn(tableView.sortIndicatorColumn).role
+                            sortOrder: tableView.sortIndicatorOrder
+                        }
                         selectionMode: SelectionMode.ContiguousSelection
 
                         function copy() {

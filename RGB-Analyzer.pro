@@ -8,7 +8,8 @@ QML_IMPORT_PATH =
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    rgbhistogram.cpp
+    rgbhistogram.cpp \
+    sortfilterproxymodel.cpp
 
 # Installation path
 # target.path =
@@ -22,4 +23,5 @@ RESOURCES += \
 
 HEADERS += \
     rgbhistogram.h \
-    rgbhistogrammodel.h
+    rgbhistogrammodel.h \
+    sortfilterproxymodel.h
