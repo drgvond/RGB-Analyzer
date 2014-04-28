@@ -55,14 +55,3 @@ int RgbHistogram::blueCount(int bin) const
 {
     return m_bins[bin].blue;
 }
-
-void RgbHistogram::copyBinsToClipboard(const QVariantList &indices) const
-{
-    QStringList csvData;
-    foreach (const QVariant &v, indices) {
-        int bin = v.toInt();
-        csvData << QString().sprintf("%d, %d, %d, %d", bin, redCount(bin), greenCount(bin), blueCount(bin));
-    }
-    QClipboard *cb = QGuiApplication::clipboard();
-    cb->setText(csvData.join(QLatin1Char('\n')));
-}

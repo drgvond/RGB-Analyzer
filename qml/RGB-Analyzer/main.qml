@@ -36,38 +36,6 @@ ApplicationWindow {
                 onTriggered: Qt.quit();
             }
         }
-
-        Menu {
-            title: qsTr("Edit")
-            MenuItem {
-                text: qsTr("Cut")
-                shortcut: "Ctrl+X"
-                enabled: false
-            }
-            MenuItem {
-                text: qsTr("Copy")
-                shortcut: "Ctrl+C"
-                onTriggered: {
-                    var tableView = tableTab.item
-                    if (tableView)
-                        tableView.copy()
-                }
-            }
-            MenuItem {
-                text: qsTr("Paste")
-                shortcut: "Ctrl+V"
-                enabled: false
-            }
-            MenuItem {
-                text: qsTr("Select All")
-                shortcut: "Ctrl+A"
-                onTriggered: {
-                    var tableView = tableTab.item
-                    if (tableView)
-                        tableView.selection.selectAll()
-                }
-            }
-        }
     }
 
     toolBar: ToolBar {
@@ -123,15 +91,6 @@ ApplicationWindow {
                         anchors.fill: parent
                         anchors.margins: 12
                         model: histModel
-                        selectionMode: SelectionMode.ContiguousSelection
-
-                        function copy() {
-                            if (selection.count === 0)
-                                return;
-                            var indices = []
-                            selection.forEach(function (i) { indices.push(i) })
-                            hist.copyBinsToClipboard(indices)
-                        }
 
                         TableViewColumn {
                             title: "#"
