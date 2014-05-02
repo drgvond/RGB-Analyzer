@@ -18,6 +18,10 @@ class RgbHistogram : public QObject
 public:
     explicit RgbHistogram(QObject *parent = 0);
 
+    Q_INVOKABLE int redCount(int bin) const;
+    Q_INVOKABLE int greenCount(int bin) const;
+    Q_INVOKABLE int blueCount(int bin) const;
+
     QUrl imageSource() const
     {
         return m_imageSource;
@@ -28,19 +32,15 @@ public:
         return m_binCount;
     }
 
-    Q_INVOKABLE void compute();
-
-    Q_INVOKABLE int redCount(int bin) const;
-    Q_INVOKABLE int greenCount(int bin) const;
-    Q_INVOKABLE int blueCount(int bin) const;
-
     int maxValue() const
     {
         return m_maxValue;
     }
 
 signals:
+
     void imageSourceChanged(QUrl arg);
+
     void binCountChanged(int arg);
 
     void maxValueChanged(int arg);
@@ -48,6 +48,7 @@ signals:
     void histogramUpdated();
 
 public slots:
+    void compute();
 
     void setImageSource(QUrl arg)
     {

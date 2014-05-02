@@ -1,5 +1,4 @@
 #include "rgbhistogram.h"
-#include "rgbhistogrammodel.h"
 #include <QImage>
 #include <QClipboard>
 #include <QGuiApplication>
@@ -43,15 +42,21 @@ void RgbHistogram::compute()
 
 int RgbHistogram::redCount(int bin) const
 {
+    if (bin >= m_binCount)
+        return 0;
     return m_bins[bin].red;
 }
 
 int RgbHistogram::greenCount(int bin) const
 {
+    if (bin >= m_binCount)
+        return 0;
     return m_bins[bin].green;
 }
 
 int RgbHistogram::blueCount(int bin) const
 {
+    if (bin >= m_binCount)
+        return 0;
     return m_bins[bin].blue;
 }
